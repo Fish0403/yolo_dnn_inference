@@ -12,6 +12,6 @@ yolov8代码：https://github.com/ultralytics/ultralytics
 官方提供的pt模型推理效果
 ![示例图片](F:/pythonProject/yolov7-main/runs/detect/exp2/bus.jpg)
 dnn推理onnx效果
-![示例图片](results/yolov5.jpg)
-![示例图片](results/yolov7.jpg)
-![示例图片](results/yolov8.jpg)
+![示例图片](yolo_dnn/results/yolov5.jpg)
+![示例图片](yolo_dnn/results/yolov7.jpg)
+![示例图片](yolo_dnn/results/yolov8.jpg)
