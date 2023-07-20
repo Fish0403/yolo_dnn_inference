@@ -9,10 +9,7 @@ yolov5代码：https://github.com/ultralytics/yolov5 （使用的是7.0版本，
 yolov7代码：https://github.com/WongKinYiu/yolov7  
 yolov8代码：https://github.com/ultralytics/ultralytics  
 ### 效果展示
-官方提供的pt模型推理效果  
-![示例图片](F:/pythonProject/yolov7-main/runs/detect/exp2/bus.jpg)  
 dnn推理onnx效果  
-<img src="yolo_dnn/results/yolov5.jpg" alt="yolov5" width="300">
-<img src="yolo_dnn/results/yolov7.jpg" alt="yolov7" width="300">
-<img src="yolo_dnn/results/yolov8.jpg" alt="yolov8" width="300">
-
+<img src="yolo_dnn/results/yolov5.jpg" alt="yolov5" width="250">
+<img src="yolo_dnn/results/yolov7.jpg" alt="yolov7" width="250">
+<img src="yolo_dnn/results/yolov8.jpg" alt="yolov8" width="250">
