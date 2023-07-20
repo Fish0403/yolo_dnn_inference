@@ -13,8 +13,9 @@ using namespace dnn;
 int main()
 {
 	string img_path = "images/bus.jpg";
-	string model_path1 = "models/yolov7.onnx";
-	string model_path2 = "models/yolov5s.onnx";
+
+	string model_path1 = "models/yolov5s.onnx";
+	string model_path2 = "models/yolov7.onnx";
 	string model_path3 = "models/yolov8n.onnx";
 	Mat img = imread(img_path);
 
@@ -29,9 +30,12 @@ int main()
 		color.push_back(Scalar(b, g, r));
 	}
 
-	Yolov8 yolov8; Net net3;
+
+
+
+	Yolov5 yolov5; Net net1;
 	Mat img1 = img.clone();
-	bool isOK = yolov8.readModel(net3, model_path3, USE_CUDA);
+	bool isOK = yolov5.readModel(net1, model_path1, USE_CUDA);
 	if (isOK) {
 		cout << "read net ok!" << endl;
 	}
@@ -39,16 +43,16 @@ int main()
 		cout << "read onnx model failed!";
 		return -1;
 	}
-	vector<Detection> result3 = yolov8.Detect(img1, net3);
+	vector<Detection> result1 = yolov5.Detect(img1, net1);
+	yolov5.drawPred(img1, result1, color);
+	Mat dst = img1({ 0, 0, img.cols, img.rows });
+	imwrite("results/yolov5.jpg", dst);
 
-	if (isOK) {
-		yolov8.drawPred(img1, result3, color);
-		Mat dst = img1({ 0, 0, img.cols, img.rows });
-		imshow("yolov8", dst);
-	}
 
-	Yolov7 yolov7; Net net1; vector<Detection> result1;
-	isOK = yolov7.readModel(net1, model_path1, USE_CUDA);
+
+	Yolov7 yolov7; Net net2; 
+	Mat img2 = img.clone();
+	isOK = yolov7.readModel(net2, model_path2, USE_CUDA);
 	if (isOK) {
 		cout << "read net ok!" << endl;
 	}
@@ -56,27 +60,27 @@ int main()
 		cout << "read onnx model failed!";
 		return -1;
 	}
-	result1 = yolov7.Detect(img, net1);
-	yolov7.drawPred(img, result1, color);
-	imshow("yolov7", img);
-	
+	vector<Detection> result2 = yolov7.Detect(img2, net2);
+	yolov7.drawPred(img2, result2, color);
+	dst = img2({ 0, 0, img.cols, img.rows });
+	imwrite("results/yolov7.jpg", dst);
 
 
-	//Yolov5 yolov5; Net net2; vector<Detection> result2; Mat img2 = img.clone();
-	//isOK = yolov5.readModel(net2, model_path2, USE_CUDA);
-	//if (isOK) {
-	//	cout << "read net ok!" << endl;
-	//}
-	//else {
-	//	cout << "read onnx model failed!";
-	//	return -1;
-	//}
+	Yolov8 yolov8; Net net3;
+	Mat img3 = img.clone();
+	isOK = yolov8.readModel(net3, model_path3, USE_CUDA);
+	if (isOK) {
+		cout << "read net ok!" << endl;
+	}
+	else {
+		cout << "read onnx model failed!";
+		return -1;
+	}
+	vector<Detection> result3 = yolov8.Detect(img3, net3);
+	yolov8.drawPred(img3, result3, color);
+	dst = img3({ 0, 0, img.cols, img.rows });
+	imwrite("results/yolov8.jpg", dst);
 
-	//result2 = yolov5.Detect(img2, net2);
-	//yolov5.drawPred(img2, result2, color);
-	//Mat dst = img2({ 0, 0, img.cols, img.rows });
-	//imshow("yolov5", dst);
 
-	waitKey(0);
 	return 0;
 }
